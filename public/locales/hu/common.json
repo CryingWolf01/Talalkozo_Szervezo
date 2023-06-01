@@ -1,0 +1,50 @@
+{
+  "button": {
+    "save": "Mentés",
+    "create": "Létrehozás",
+    "delete": "Törlés",
+    "submit": "Küldés",
+    "cancel": "Mégse",
+    "back": "Vissza",
+    "search": "Keresés",
+    "add": "Hozzáadás",
+    "backToLogin": "Vissza a bejelentkezéshez"
+  },
+
+  "notification": {
+    "update": {
+      "success": "Sikeres {{subject}} módosítás!",
+      "failure": "Sikertelen {{subject}} módosítás!"
+    },
+    "create": {
+      "success": "Sikeres {{subject}} létrehozás!",
+      "failure": "Sikertelen {{subject}} létrehozás!"
+    },
+    "delete": {
+      "success": "Sikeres {{subject}} törlés!",
+      "failure": "Sikertelen {{subject}} törlés!"
+    },
+    "login": {
+      "failure": "Sikertelen bejelentkezés"
+    },
+    "registration": {
+      "success": "Sikeres regisztráció. Most már beléphetsz a fiókodba.",
+      "failure": "Sikertelen regisztráció"
+    }
+  },
+
+  "validation": {
+    "required": "A mező megadása kötelező!"
+  },
+
+  "unitType": {
+    "KILOGRAMM": "kg",
+    "GRAMM": "g",
+    "DEKAGRAMM": "dkg",
+    "LITER": "l",
+    "DARAB": "db",
+    "DOBOZ": "doboz",
+    "CSOMAG": "csomag",
+    "ÜVEG": "üveg"
+  }
+}
