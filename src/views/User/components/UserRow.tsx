@@ -17,6 +17,7 @@ const UserRow = ({ user, reset }: Props) => {
   const deleteSelectedUser = async () => {
     try {
       await deleteUser(user.id);
+
       enqueueSnackbar(
         t("common:notification.delete.success", {
           subject: t("user.subject"),

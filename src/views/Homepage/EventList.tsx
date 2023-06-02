@@ -46,7 +46,9 @@ const EventList = () => {
           ) : (
             <>
               {eventList.length &&
-                eventList.map((event) => <EventRow event={event} />)}
+                eventList.map((event) => (
+                  <EventRow event={event} reset={fetchData} />
+                ))}
             </>
           )}
         </>

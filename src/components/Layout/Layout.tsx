@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../shared/reducers/AuthContext";
 import Login from "../../views/Login/Login";
 import SideBar from "./Sidebar/Sidebar";
+import Registration from "../../views/Login/Registration";
 
 type Props = {
   children: React.ReactNode;
@@ -47,44 +48,52 @@ export default function Layout({ children }: Props): JSX.Element {
   const title = t([`drawer.${page}` || "drawer.notFound"]);
 
   return (
-    <>{user ? (<Box className={classes.pageWrapper}>
-      <SideBar />
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="flex-start"
-        width="100%"
-      >
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          width="100%"
-          padding="24px 24px 24px calc(125px + 24px)"
-        >
-          <Box display="flex">
-            {pathname !== "/" && (
-              <Tooltip title={t("common:button.back").toString()}>
-                <IconButton
-                  style={{ marginRight: 20 }}
-                  onClick={() => navigate(-1)}
-                >
-                  <ArrowBack />
-                </IconButton>
-              </Tooltip>
-            )}
-            <Typography
-              style={{
-                fontSize: "32px",
-                fontWeight: "bold",
-              }}
+    <>
+      {user ? (
+        <Box className={classes.pageWrapper}>
+          <SideBar />
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            width="100%"
+          >
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              width="100%"
+              padding="24px 24px 24px calc(125px + 24px)"
             >
-              {title}
-            </Typography>
+              <Box display="flex">
+                {pathname !== "/" && (
+                  <Tooltip title={t("common:button.back").toString()}>
+                    <IconButton
+                      style={{ marginRight: 20 }}
+                      onClick={() => navigate(-1)}
+                    >
+                      <ArrowBack />
+                    </IconButton>
+                  </Tooltip>
+                )}
+                <Typography
+                  style={{
+                    fontSize: "32px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {title}
+                </Typography>
+              </Box>
+            </Box>
+            <Box className={classes.content}>{children}</Box>
           </Box>
         </Box>
-        <Box className={classes.content}>{children}</Box>
-      </Box>
-    </Box>): (<Login/>)}</>
+      ) : pathname === "/registration" ? (
+        <Registration />
+      ) : (
+        <Login />
+      )}
+    </>
   );
 }

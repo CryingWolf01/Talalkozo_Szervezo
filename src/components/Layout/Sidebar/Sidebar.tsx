@@ -57,7 +57,7 @@ const SideBar = () => {
               icon={<Event />}
             />
           )}
-          {(isAdmin(user?.uid) || isOrganizer(user?.uid)) && (
+          {isAdmin(user?.uid) && (
             <SidebarItem to="/user" text={t("drawer.user")} icon={<Person />} />
           )}
         </Box>

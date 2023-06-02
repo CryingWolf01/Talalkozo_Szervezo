@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import PasswordTextField from "../../components/PasswordTextField";
 import { COLORS } from "../../config/theme";
+import { createUser } from "../../shared/network/users.api";
 import { User } from "../../shared/types";
 
 const useStyles = makeStyles(
@@ -28,11 +29,11 @@ const useStyles = makeStyles(
     },
   },
   {
-    name: "Login",
+    name: "Regitration",
   }
 );
 
-const Login = () => {
+const Registration = () => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -47,20 +48,30 @@ const Login = () => {
   const auth = getAuth();
   const [authing, setAuthing] = useState<boolean>(false);
 
-  const signInWithEmailPassword = async () => {
+  const createAccount = async () => {
     setAuthing(true);
-    await signInWithEmailAndPassword(auth, watch("email"), watch("password"))
+    await createUserWithEmailAndPassword(
+      auth,
+      watch("email"),
+      watch("password")
+    )
       .then((response) => {
-        navigate("/");
         setAuthing(false);
       })
       .catch((error) => {
         console.error(error);
-        enqueueSnackbar(t("common:notification.login.failure"), {
+        setAuthing(false);
+        enqueueSnackbar(t("common:notification.registration.failure"), {
           variant: "error",
         });
-        setAuthing(false);
       });
+    await createUser({
+      name: watch("name"),
+      uid: auth.currentUser?.uid,
+      email: watch("email"),
+      password: watch("password"),
+    });
+    navigate("/");
   };
 
   return (
@@ -78,6 +89,14 @@ const Login = () => {
         <Card component="form" elevation={10} style={{ borderRadius: 10 }}>
           <CardHeader title={t("login.title")} />
           <CardContent style={{ paddingTop: 0 }}>
+            <TextField
+              {...register("name", {
+                required: t("validation.required").toString(),
+              })}
+              label={t("user.formValues.name")}
+              error={!!errors.email}
+              helperText={errors.email?.message}
+            />
             <TextField
               {...register("email", {
                 required: t("validation.required").toString(),
@@ -107,16 +126,16 @@ const Login = () => {
               mt={2}
             >
               <Button
-                variant="contained"
-                onClick={signInWithEmailPassword}
+                component={Link}
+                to="/login"
                 color="primary"
                 style={{ height: 35, margin: 2 }}
               >
-                {t("login.title")}
+                {t("Bejelentkezés")}
               </Button>
               <Button
-                component={Link}
-                to="/registration"
+                variant="contained"
+                onClick={createAccount}
                 color="primary"
                 style={{ height: 35, margin: 2 }}
               >
@@ -130,4 +149,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;

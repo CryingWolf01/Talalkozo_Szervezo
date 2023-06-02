@@ -28,8 +28,16 @@
       "failure": "Sikertelen bejelentkezés"
     },
     "registration": {
-      "success": "Sikeres regisztráció. Most már beléphetsz a fiókodba.",
+      "success": "Sikeres regisztráció.",
       "failure": "Sikertelen regisztráció"
+    },
+    "apply": {
+      "success": "Sikeres jelentkezés!",
+      "failure": "Sikertelen jelentkezés!"
+    },
+    "decline": {
+      "success": "Sikeres lejelentkezés!",
+      "failure": "Sikertelen lejelentkezés!"
     }
   },
 

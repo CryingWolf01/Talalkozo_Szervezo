@@ -14,9 +14,8 @@ import EventModify from "./views/Event/EventModify";
 import Home from "./views/Homepage/Home";
 import Login from "./views/Login/Login";
 import PageNotFound from "./views/PageNotFound";
-import UserModify from "./views/User/UserModify";
-import UserCreate from "./views/User/UserCreate";
 import UserList from "./views/User/UserList";
+import Registration from "./views/Login/Registration";
 
 initializeApp(firebaseConfig);
 
@@ -35,14 +34,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
             {/*Event Routes*/}
             <Route path="/event" element={<EventList />} />
             <Route path="/event/create" element={<EventCreate />} />
             <Route path="/event/modify" element={<EventModify />} />
             {/*User Routes*/}
             <Route path="/user" element={<UserList />} />
-            <Route path="/user/create" element={<UserCreate />} />
-            <Route path="/user/modify" element={<UserModify />} />
           </Routes>
         </Layout>
       </Suspense>

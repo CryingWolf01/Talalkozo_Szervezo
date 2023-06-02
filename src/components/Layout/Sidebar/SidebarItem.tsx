@@ -5,7 +5,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { NavLink } from "../../Router";
 
 export type SidebarItemProps = {
@@ -18,7 +18,14 @@ export type SidebarItemProps = {
   onClick?: (event: any) => void;
 };
 
-const SideBarItem = ({ to, icon, text, exact, activeMenuItem, onClick }: SidebarItemProps)=>{
+const SideBarItem = ({
+  to,
+  icon,
+  text,
+  exact,
+  activeMenuItem,
+  onClick,
+}: SidebarItemProps) => {
   const location = useLocation();
   const temp = location.pathname === "/" ? "/home" : location.pathname;
   if (to) {
@@ -34,14 +41,14 @@ const SideBarItem = ({ to, icon, text, exact, activeMenuItem, onClick }: Sidebar
           style={
             temp === to
               ? {
-                backgroundColor: "white",
-                color: "blue",
-                borderRadius: "20px 0 0 20px",
-                marginLeft: "8px",
-              }
+                  backgroundColor: "white",
+                  color: "blue",
+                  borderRadius: "20px 0 0 20px",
+                  marginLeft: "8px",
+                }
               : {
-                color: "white",
-              }
+                  color: "white",
+                }
           }
         >
           <Box
@@ -117,8 +124,8 @@ const SideBarItem = ({ to, icon, text, exact, activeMenuItem, onClick }: Sidebar
           />
         </Box>
       </ListItem>
-    )
+    );
   }
-}
+};
 
 export default SideBarItem;
