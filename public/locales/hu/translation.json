@@ -2,84 +2,15 @@
   "drawer": {
     "login": "Bejelentkezés",
     "home": "Kezdőlap",
-    "finances": "Havi kiadások",
-    "shopping-lists": "Bevásárló listák",
-    "shopping-lists/create": "Új lista",
-    "shopping-lists/modify": "Lista módosítása",
-    "shopping-lists/details": "Lista tartalma",
-    "admin": "Admin felületek",
-    "admin/product": "Termékek",
-    "admin/product/create": "Új termék",
-    "admin/product/modify": "Termék módosítása",
+    "events": "Események",
+    "users": "Felhasználók",
     "notFound": ""
   },
   "login": {
-    "appName": "Rendszerfejlesztés",
+    "appName": "Találkozó szervező",
     "title": "Bejelentkezés",
     "username": "Email",
     "password": "Jelszó"
-  },
-  "shoppingLists": {
-    "create": "Létrehozás",
-    "modify": "Módosítás",
-    "details": "Részletek",
-    "delete": "Törlés",
-    "subject": "bevásárló lista",
-    "yourList": "Bevásárló listád",
-    "listPieces": "Lista elemei",
-    "formValues": {
-      "name": "Lista neve",
-      "date": "Létrehozás ideje",
-      "price": "Összesen (Ft)",
-      "shoppingListItems": "Termékek"
-    },
-    "listItems": {
-      "name": "Termék neve",
-      "price": "Ár (Ft)",
-      "quantity": "Mennyiség",
-      "unit": "Mértékegység"
-    }
-  },
-  "finance": {
-    "create": "Létrehozás",
-    "modify": "Módosítás",
-    "details": "Részletek",
-    "delete": "Törlés",
-    "subject": "kiadás",
-    "yourList": "Kiadásaid",
-    "listPieces": "Kiadások bevásárló listákból",
-    "formValues": {
-      "date": "Létrehozás ideje",
-      "finance": "Kiadás összesen (Ft)",
-      "financeListItems": "Bevásárló listák"
-    },
-    "financeItems": {
-      "name": "Lista neve",
-      "price": "Ár (Ft)"
-    }
-  },
-  "product": {
-    "title": "Termékek",
-    "create": "Létrehozás",
-    "modify": "Módosítás",
-    "delete": "Törlés",
-    "subject": "termék",
-    "formValues": {
-      "name": "Termék neve",
-      "price": "Ár (Ft)",
-      "unit": "Mértékegység"
-    }
-  },
-  "article": {
-    "title": "Bejegyzések",
-    "create": "Létrehozás",
-    "modify": "Módosítás",
-    "delete": "Törlés",
-    "subject": "bejegyzés",
-    "formValues": {
-      "title": "Cím",
-      "description": "Tartalom"
-    }
   },
   "notFound": "Az oldal nem található",
   "noItem": "Nincs megjeleníthető elem"

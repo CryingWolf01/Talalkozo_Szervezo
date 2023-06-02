@@ -44,3 +44,18 @@ export type Article = {
   description: string;
   date: string;
 };
+
+export type Event = {
+  id: string;
+  title: string;
+  date: string;
+  description?: string;
+  applifiedUsers?: ApplifiedUser[];
+};
+
+export type ApplifiedUser = {
+  id: string;
+  name: string;
+  userId: string;
+  email: string;
+};

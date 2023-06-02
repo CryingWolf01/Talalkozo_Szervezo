@@ -1,29 +1,22 @@
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { initializeApp } from "firebase/app";
 import { Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import LayoutLoading from "./components/LayoutLoading";
+import { firebaseConfig } from "./config/config";
 import supportedLocales from "./config/supportedLocales";
+import EventCreate from "./views/Event/EventCreate";
+import EventList from "./views/Event/EventList";
+import EventModify from "./views/Event/EventModify";
+import FinancesCreate from "./views/Finances/FinancesCreate";
+import FinancesList from "./views/Finances/FinancesList";
+import FinancesModify from "./views/Finances/FinancesModify";
 import Home from "./views/Homepage/Home";
 import Login from "./views/Login/Login";
 import PageNotFound from "./views/PageNotFound";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "./config/config";
-import ShoppingLists from "./views/Shopping/ShoppingLists";
-import AdminTabs from "./views/Admin/AdminTabs";
-import FinancesList from "./views/Finances/FinancesList";
-import ShoppingListCreate from "./views/Shopping/ShoppingListCreate";
-import ShoppingListModify from "./views/Shopping/ShoppingListModify";
-import ShoppingListDetails from "./views/Shopping/ShoppingListDetails";
-import FinancesCreate from "./views/Finances/FinancesCreate";
-import FinancesModify from "./views/Finances/FinancesModify";
-import FinancesDetails from "./views/Finances/FinancesDetails";
-import ProductCreate from "./views/Admin/Products/ProductCreate";
-import ProductModify from "./views/Admin/Products/ProductModify";
-import ArticleCreate from "./views/Admin/Articles/ArticleCreate";
-import ArticleModify from "./views/Admin/Articles/ArticleModify";
 
 initializeApp(firebaseConfig);
 
@@ -42,31 +35,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            {/*ShoppingList Routes*/}
-            <Route path="/shopping-lists" element={<ShoppingLists />} />
-            <Route
-              path="/shopping-lists/create"
-              element={<ShoppingListCreate />}
-            />
-            <Route
-              path="/shopping-lists/modify"
-              element={<ShoppingListModify />}
-            />
-            <Route
-              path="/shopping-lists/details"
-              element={<ShoppingListDetails />}
-            />
-            {/*Finaces Routes*/}
-            <Route path="/finances" element={<FinancesList />} />
-            <Route path="/finances/create" element={<FinancesCreate />} />
-            <Route path="/finances/modify" element={<FinancesModify />} />
-            <Route path="/finances/details" element={<FinancesDetails />} />
-            {/*Admin Routes*/}
-            <Route path="/admin" element={<AdminTabs />} />
-            <Route path="/admin/product/create" element={<ProductCreate />} />
-            <Route path="/admin/product/modify" element={<ProductModify />} />
-            <Route path="/admin/article/create" element={<ArticleCreate />} />
-            <Route path="/admin/article/modify" element={<ArticleModify />} />
+            {/*Event Routes*/}
+            <Route path="/event" element={<EventList />} />
+            <Route path="/event/create" element={<EventCreate />} />
+            <Route path="/event/modify" element={<EventModify />} />
+            {/*User Routes*/}
+            <Route path="/user" element={<FinancesList />} />
+            <Route path="/user/create" element={<FinancesCreate />} />
+            <Route path="/user/modify" element={<FinancesModify />} />
           </Routes>
         </Layout>
       </Suspense>

@@ -1,17 +1,20 @@
 import { Avatar, Box, Drawer } from "@material-ui/core";
-import {
-  Home,
-  Money,
-  ShoppingBasket,
-  SupervisorAccount,
-} from "@material-ui/icons";
+import { Home, Event, Person } from "@material-ui/icons";
 import { MouseEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { COLORS } from "../../../config/theme";
 import ProfileMenu from "./ProfileMenu";
 import SidebarItem from "./SidebarItem";
 import { AuthContext } from "../../../shared/reducers/AuthContext";
-import { ADMIN_USER_IDS } from "../../../config/constants";
+import { ADMIN_USER_IDS, ORGANIZER_USER_IDS } from "../../../config/constants";
+
+export function isAdmin(uid: string | undefined) {
+  return !!ADMIN_USER_IDS.find((id) => id === uid);
+}
+
+export function isOrganizer(uid: string | undefined) {
+  return !!ORGANIZER_USER_IDS.find((id) => id === uid);
+}
 
 const SideBar = () => {
   const { t } = useTranslation();
@@ -23,10 +26,6 @@ const SideBar = () => {
   const handleClickProfile = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorElProfile(event.currentTarget);
   };
-
-  function isAdmin(uid: string | undefined) {
-    return !!ADMIN_USER_IDS.find((id) => id === uid);
-  }
 
   return (
     <>
@@ -51,36 +50,25 @@ const SideBar = () => {
       >
         <Box>
           <SidebarItem to="/" text={t("drawer.home")} icon={<Home />} />
-          <SidebarItem
-            to="/finances"
-            text={t("drawer.finances")}
-            icon={<Money />}
-          />
-          <SidebarItem
-            to="/shopping-lists"
-            text={t("drawer.shopping-lists")}
-            icon={<ShoppingBasket />}
-          />
-          {isAdmin(user?.uid) && (
+          {(isAdmin(user?.uid) || isOrganizer(user?.uid)) && (
             <SidebarItem
-              to="/admin"
-              activeMenuItem={[
-                "/admin/product/create",
-                "/admin/product/modify",
-              ]}
-              text={t("drawer.admin")}
-              icon={<SupervisorAccount />}
+              to="/events"
+              text={t("drawer.events")}
+              icon={<Event />}
+            />
+          )}
+          {(isAdmin(user?.uid) || isOrganizer(user?.uid)) && (
+            <SidebarItem
+              to="/users"
+              text={t("drawer.users")}
+              icon={<Person />}
             />
           )}
         </Box>
         <SidebarItem
           onClick={handleClickProfile}
-          text={user?.displayName ? user.displayName : ""}
-          icon={
-            <Avatar>
-              {user?.displayName && user.displayName[0].toUpperCase()}
-            </Avatar>
-          }
+          text={user?.email ? user.email : ""}
+          icon={<Avatar>{user?.email && user.email[0].toUpperCase()}</Avatar>}
         />
       </Drawer>
     </>

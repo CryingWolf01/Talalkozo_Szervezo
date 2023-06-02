@@ -6,4 +6,4 @@ export const getDb = () => {
   const app = initializeApp(firebaseConfig);
   let db = getFirestore(app);
   return db;
-}
+};

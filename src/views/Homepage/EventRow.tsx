@@ -6,23 +6,23 @@ import {
   Typography,
 } from "@material-ui/core";
 
-type Props = { article: any };
+type Props = { event: any };
 
-const ArticleRow = ({ article }: Props) => {
+const EventRow = ({ event }: Props) => {
   return (
     <Card style={{ marginTop: "10px", border: "1px solid black" }}>
       <CardHeader
         title={
           <Box display={"flex"} justifyContent={"space-between"}>
-            <Typography>{article.title}</Typography>
+            <Typography>{event.title}</Typography>
           </Box>
         }
       />
       <CardContent>
-        <Typography>{article.description}</Typography>
+        <Typography>{event.description}</Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default ArticleRow;
+export default EventRow;

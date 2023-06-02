@@ -19,7 +19,7 @@ export default function PageLoading() {
         style={{ height: 130 }}
       >
         <Typography variant="h3" color="primary">
-          Rendszerfejlesztés
+          Találkozó szervező
         </Typography>
         <CircularProgress />
       </Grid>

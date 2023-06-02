@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getArticleList } from "../../../shared/network/article.api";
 import {
   Box,
-  Button,
   CircularProgress,
   Container,
   Typography,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Add } from "@material-ui/icons";
-import ArticleRow from "./components/ArticleRow";
+import EventRow from "./EventRow";
+import { getEventList } from "../../shared/network/events.api";
 
-const ArticleList = () => {
+const EventList = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [articleList, setArticleList] = useState<any[]>([]);
+  const [eventList, setEventList] = useState<any[]>([]);
 
   const fetchData = async () => {
     setLoading(true);
-    const res = await getArticleList();
-    setArticleList([...res]);
+    const res = await getEventList();
+    setEventList([...res]);
     setLoading(false);
   };
 
@@ -29,19 +26,6 @@ const ArticleList = () => {
   }, []);
   return (
     <Container maxWidth="lg">
-      <Box display="flex" justifyContent="flex-end">
-        <Box>
-          <Button component={Link} to="/admin/article/create">
-            <Add
-              style={{
-                fontSize: "20px",
-                marginRight: 8,
-              }}
-            />
-            {t("article.create")}
-          </Button>
-        </Box>
-      </Box>
       {loading ? (
         <Box
           display="flex"
@@ -53,7 +37,7 @@ const ArticleList = () => {
         </Box>
       ) : (
         <>
-          {articleList.length === 0 ? (
+          {eventList.length === 0 ? (
             <Box style={{ marginBottom: "20px" }}>
               <Typography variant="h5" align="center" color="secondary">
                 {t("noItem")}
@@ -61,10 +45,8 @@ const ArticleList = () => {
             </Box>
           ) : (
             <>
-              {articleList.length &&
-                articleList.map((article) => (
-                  <ArticleRow article={article} reset={fetchData} />
-                ))}
+              {eventList.length &&
+                eventList.map((event) => <EventRow event={event} />)}
             </>
           )}
         </>
@@ -73,4 +55,4 @@ const ArticleList = () => {
   );
 };
 
-export default ArticleList;
+export default EventList;
