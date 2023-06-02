@@ -2,8 +2,8 @@
   "drawer": {
     "login": "Bejelentkezés",
     "home": "Kezdőlap",
-    "events": "Események",
-    "users": "Felhasználók",
+    "event": "Események",
+    "user": "Felhasználók",
     "notFound": ""
   },
   "login": {
@@ -11,6 +11,30 @@
     "title": "Bejelentkezés",
     "username": "Email",
     "password": "Jelszó"
+  },
+  "user": {
+    "create": "Létrehozás",
+    "modify": "Módosítás",
+    "delete": "Törlés",
+    "list": "Felhasználók",
+    "subject": "felhasználó",
+    "formValues": {
+      "name": "Név",
+      "email": "Email cím",
+      "password": "Jelszó"
+    }
+  },
+  "event": {
+    "create": "Létrehozás",
+    "modify": "Módosítás",
+    "delte": "Törlés",
+    "list": "Események",
+    "subject": "esemény",
+    "formValues": {
+      "title": "Címe",
+      "date": "Időpontja",
+      "description": "Leírás"
+    }
   },
   "notFound": "Az oldal nem található",
   "noItem": "Nincs megjeleníthető elem"

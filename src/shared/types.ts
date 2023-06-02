@@ -1,7 +1,8 @@
 export type User = {
   id?: number;
+  name?: string;
   password: string;
-  username: string;
+  email: string;
 };
 export type ShoppingListData = {
   id: string;
@@ -46,7 +47,7 @@ export type Article = {
 };
 
 export type Event = {
-  id: string;
+  id?: string;
   title: string;
   date: string;
   description?: string;

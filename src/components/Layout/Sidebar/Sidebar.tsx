@@ -52,17 +52,13 @@ const SideBar = () => {
           <SidebarItem to="/" text={t("drawer.home")} icon={<Home />} />
           {(isAdmin(user?.uid) || isOrganizer(user?.uid)) && (
             <SidebarItem
-              to="/events"
-              text={t("drawer.events")}
+              to="/event"
+              text={t("drawer.event")}
               icon={<Event />}
             />
           )}
           {(isAdmin(user?.uid) || isOrganizer(user?.uid)) && (
-            <SidebarItem
-              to="/users"
-              text={t("drawer.users")}
-              icon={<Person />}
-            />
+            <SidebarItem to="/user" text={t("drawer.user")} icon={<Person />} />
           )}
         </Box>
         <SidebarItem

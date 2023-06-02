@@ -9,11 +9,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
@@ -58,7 +56,7 @@ const Login = () => {
 
     await createUserWithEmailAndPassword(
       auth,
-      watch("username"),
+      watch("email"),
       watch("password")
     )
       .then((response) => {
@@ -78,29 +76,13 @@ const Login = () => {
 
   const signInWithEmailPassword = async () => {
     setAuthing(true);
-    await signInWithEmailAndPassword(auth, watch("username"), watch("password"))
+    await signInWithEmailAndPassword(auth, watch("email"), watch("password"))
       .then((response) => {
         navigate("/");
         setAuthing(false);
       })
       .catch((error) => {
         console.error(error);
-        enqueueSnackbar(t("common:notification.login.failure"), {
-          variant: "error",
-        });
-        setAuthing(false);
-      });
-  };
-
-  const signInWithGoogle = async () => {
-    setAuthing(true);
-
-    await signInWithPopup(auth, new GoogleAuthProvider())
-      .then((response) => {
-        navigate("/");
-        setAuthing(false);
-      })
-      .catch((error) => {
         enqueueSnackbar(t("common:notification.login.failure"), {
           variant: "error",
         });
@@ -124,12 +106,12 @@ const Login = () => {
           <CardHeader title={t("login.title")} />
           <CardContent style={{ paddingTop: 0 }}>
             <TextField
-              {...register("username", {
+              {...register("email", {
                 required: t("validation.required").toString(),
               })}
               label={t("login.username")}
-              error={!!errors.username}
-              helperText={errors.username?.message}
+              error={!!errors.email}
+              helperText={errors.email?.message}
             />
             <Controller
               control={control}
@@ -161,19 +143,11 @@ const Login = () => {
               </Button>
               <Button
                 variant="contained"
-                onClick={signInWithGoogle}
-                color="primary"
-                style={{ height: 35, margin: 2 }}
-              >
-                {t("Sign In with google")}
-              </Button>
-              <Button
-                variant="contained"
                 onClick={createAccount}
                 color="primary"
                 style={{ height: 35, margin: 2 }}
               >
-                {t("Register")}
+                {t("Regisztráció")}
               </Button>
             </Box>
           </CardContent>

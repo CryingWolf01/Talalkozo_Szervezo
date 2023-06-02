@@ -11,12 +11,12 @@ import supportedLocales from "./config/supportedLocales";
 import EventCreate from "./views/Event/EventCreate";
 import EventList from "./views/Event/EventList";
 import EventModify from "./views/Event/EventModify";
-import FinancesCreate from "./views/Finances/FinancesCreate";
-import FinancesList from "./views/Finances/FinancesList";
-import FinancesModify from "./views/Finances/FinancesModify";
 import Home from "./views/Homepage/Home";
 import Login from "./views/Login/Login";
 import PageNotFound from "./views/PageNotFound";
+import UserModify from "./views/User/UserModify";
+import UserCreate from "./views/User/UserCreate";
+import UserList from "./views/User/UserList";
 
 initializeApp(firebaseConfig);
 
@@ -40,9 +40,9 @@ function App() {
             <Route path="/event/create" element={<EventCreate />} />
             <Route path="/event/modify" element={<EventModify />} />
             {/*User Routes*/}
-            <Route path="/user" element={<FinancesList />} />
-            <Route path="/user/create" element={<FinancesCreate />} />
-            <Route path="/user/modify" element={<FinancesModify />} />
+            <Route path="/user" element={<UserList />} />
+            <Route path="/user/create" element={<UserCreate />} />
+            <Route path="/user/modify" element={<UserModify />} />
           </Routes>
         </Layout>
       </Suspense>
