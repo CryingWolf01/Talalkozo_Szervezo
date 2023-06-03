@@ -27,7 +27,9 @@
   "event": {
     "create": "Létrehozás",
     "modify": "Módosítás",
-    "delte": "Törlés",
+    "delete": "Törlés",
+    "apply": "Jelentkezés",
+    "decline": "Lejelentkezés",
     "list": "Események",
     "subject": "esemény",
     "formValues": {

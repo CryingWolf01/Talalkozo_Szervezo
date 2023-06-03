@@ -9,6 +9,7 @@ import { AuthContext } from "../../shared/reducers/AuthContext";
 import Login from "../../views/Login/Login";
 import SideBar from "./Sidebar/Sidebar";
 import Registration from "../../views/Login/Registration";
+import ResetPassword from "../../views/Login/ResetPassword";
 
 type Props = {
   children: React.ReactNode;
@@ -91,6 +92,8 @@ export default function Layout({ children }: Props): JSX.Element {
         </Box>
       ) : pathname === "/registration" ? (
         <Registration />
+      ) : pathname === "/reset-password" ? (
+        <ResetPassword />
       ) : (
         <Login />
       )}

@@ -19,6 +19,7 @@ import PasswordTextField from "../../components/PasswordTextField";
 import { COLORS } from "../../config/theme";
 import { createUser } from "../../shared/network/users.api";
 import { User } from "../../shared/types";
+import { ArrowBack } from "@material-ui/icons";
 
 const useStyles = makeStyles(
   {
@@ -71,6 +72,9 @@ const Registration = () => {
       email: watch("email"),
       password: watch("password"),
     });
+    enqueueSnackbar(t("common:notification.registration.success"), {
+      variant: "success",
+    });
     navigate("/");
   };
 
@@ -87,7 +91,7 @@ const Registration = () => {
       >
         <Typography variant="h1">{t("login.appName")}</Typography>
         <Card component="form" elevation={10} style={{ borderRadius: 10 }}>
-          <CardHeader title={t("login.title")} />
+          <CardHeader title={t("Regisztráció")} />
           <CardContent style={{ paddingTop: 0 }}>
             <TextField
               {...register("name", {
@@ -130,6 +134,7 @@ const Registration = () => {
                 to="/login"
                 color="primary"
                 style={{ height: 35, margin: 2 }}
+                startIcon={<ArrowBack />}
               >
                 {t("Bejelentkezés")}
               </Button>

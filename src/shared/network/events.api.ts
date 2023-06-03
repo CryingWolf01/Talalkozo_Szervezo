@@ -6,6 +6,8 @@ import {
   doc,
   deleteDoc,
   getDoc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 import { getDb } from "../../config/database";
 import { Event } from "../types";
@@ -14,7 +16,9 @@ const collection_name = "event";
 
 export const getEventList = async () => {
   let result: any[] = [];
-  await getDocs(collection(getDb(), collection_name)).then((snapshot) => {
+  await getDocs(
+    query(collection(getDb(), collection_name), orderBy("date"))
+  ).then((snapshot) => {
     result = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   });
 

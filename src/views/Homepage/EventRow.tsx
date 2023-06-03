@@ -49,8 +49,6 @@ const EventRow = ({ event, reset }: Props) => {
     (a) => a.uid === authUser?.uid && a.eventId === event.id
   );
 
-  console.log(applications);
-
   const applyEvent = async () => {
     try {
       await createApplication({

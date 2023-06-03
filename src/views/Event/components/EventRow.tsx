@@ -9,16 +9,19 @@ import {
 } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
-import { Delete, Edit } from "@material-ui/icons";
+import { Assignment, Delete, Edit } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { deleteEvent } from "../../../shared/network/events.api";
+import { useState } from "react";
+import AssignedUsersDialog from "./AssignedUsersDialog";
 
 type Props = { event: any; reset: any };
 
 const EventRow = ({ event, reset }: Props) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const [open, setOpen] = useState(false);
 
   const deleteItem = async () => {
     try {
@@ -73,6 +76,16 @@ const EventRow = ({ event, reset }: Props) => {
                     <Edit />
                   </IconButton>
                 </Tooltip>
+                <Tooltip title={t("event.modify").toString()}>
+                  <IconButton
+                    size="small"
+                    color="primary"
+                    style={{ margin: "0 8px" }}
+                    onClick={() => setOpen(true)}
+                  >
+                    <Assignment />
+                  </IconButton>
+                </Tooltip>
               </Box>
             </Box>
             <Box>
@@ -85,6 +98,12 @@ const EventRow = ({ event, reset }: Props) => {
       />
       <CardContent>
         <Typography variant="body1">{event.description}</Typography>
+        <AssignedUsersDialog
+          open={open}
+          setOpen={setOpen}
+          eventId={event.id}
+          eventDate={event.date}
+        />
       </CardContent>
     </Card>
   );

@@ -8,6 +8,7 @@
     "back": "Vissza",
     "search": "Keresés",
     "add": "Hozzáadás",
+    "close": "Bezárás",
     "backToLogin": "Vissza a bejelentkezéshez"
   },
 
@@ -38,6 +39,10 @@
     "decline": {
       "success": "Sikeres lejelentkezés!",
       "failure": "Sikertelen lejelentkezés!"
+    },
+    "passwordReset": {
+      "success": "A jelszó visszaállító email el lett küldve a megadott címre!",
+      "failure": "Hiba történt a folyamat végrehajtása közben!"
     }
   },
 

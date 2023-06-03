@@ -8,17 +8,15 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
-import PasswordTextField from "../../components/PasswordTextField";
 import { COLORS } from "../../config/theme";
 import { User } from "../../shared/types";
-import { ArrowForward } from "@material-ui/icons";
 
 const useStyles = makeStyles(
   {
@@ -29,16 +27,15 @@ const useStyles = makeStyles(
     },
   },
   {
-    name: "Login",
+    name: "Regitration",
   }
 );
 
-const Login = () => {
+const ResetPassword = () => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const {
-    control,
     register,
     watch,
     formState: { errors },
@@ -48,22 +45,24 @@ const Login = () => {
   const auth = getAuth();
   const [authing, setAuthing] = useState<boolean>(false);
 
-  const signInWithEmailPassword = async () => {
+  const resetPassword = async () => {
     setAuthing(true);
-    await signInWithEmailAndPassword(auth, watch("email"), watch("password"))
+    await sendPasswordResetEmail(auth, watch("email"))
       .then((response) => {
-        navigate("/");
         setAuthing(false);
+        enqueueSnackbar(t("common:notification.passwordReset.success"), {
+          variant: "success",
+        });
       })
       .catch((error) => {
         console.error(error);
-        enqueueSnackbar(t("common:notification.login.failure"), {
+        setAuthing(false);
+        enqueueSnackbar(t("common:notification.registration.failure"), {
           variant: "error",
         });
-        setAuthing(false);
       });
+    navigate("/");
   };
-
   return (
     <Box className={classes.root}>
       <Loading open={authing} />
@@ -76,8 +75,12 @@ const Login = () => {
         maxWidth={500}
       >
         <Typography variant="h1">{t("login.appName")}</Typography>
-        <Card component="form" elevation={10} style={{ borderRadius: 10 }}>
-          <CardHeader title={t("login.title")} />
+        <Card
+          component="form"
+          elevation={10}
+          style={{ borderRadius: 10, minWidth: 450 }}
+        >
+          <CardHeader title={t("Jelszó emlékeztető küldése")} />
           <CardContent style={{ paddingTop: 0 }}>
             <TextField
               {...register("email", {
@@ -87,28 +90,6 @@ const Login = () => {
               error={!!errors.email}
               helperText={errors.email?.message}
             />
-            <Controller
-              control={control}
-              name="password"
-              rules={{ required: t("validation.required").toString() }}
-              render={({ field: { onChange, value } }) => (
-                <PasswordTextField
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
-                  label={t("login.password")}
-                  value={value}
-                  onChange={onChange}
-                />
-              )}
-            />
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              mt={2}
-            >
-              <Link to={"/reset-password"}>Jelszó emlékeztető küldése</Link>
-            </Box>
             <Box
               display="flex"
               justifyContent="center"
@@ -117,20 +98,11 @@ const Login = () => {
             >
               <Button
                 variant="contained"
-                onClick={signInWithEmailPassword}
+                onClick={resetPassword}
                 color="primary"
                 style={{ height: 35, margin: 2 }}
               >
-                {t("login.title")}
-              </Button>
-              <Button
-                component={Link}
-                to="/registration"
-                color="primary"
-                style={{ height: 35, margin: 2 }}
-                endIcon={<ArrowForward />}
-              >
-                {t("Regisztráció")}
+                {t("Küldés")}
               </Button>
             </Box>
           </CardContent>
@@ -140,4 +112,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;
