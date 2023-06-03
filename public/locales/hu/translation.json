@@ -31,6 +31,7 @@
     "apply": "Jelentkezés",
     "decline": "Lejelentkezés",
     "list": "Események",
+    "appliedUsers": "Jelentkezések",
     "subject": "esemény",
     "formValues": {
       "title": "Címe",

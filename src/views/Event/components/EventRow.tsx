@@ -76,7 +76,7 @@ const EventRow = ({ event, reset }: Props) => {
                     <Edit />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t("event.modify").toString()}>
+                <Tooltip title={t("event.appliedUsers").toString()}>
                   <IconButton
                     size="small"
                     color="primary"
