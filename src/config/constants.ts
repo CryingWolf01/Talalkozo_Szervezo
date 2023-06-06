@@ -5,7 +5,7 @@ export const HEADER_HEIGHT = 78;
 
 export const ADMIN_USER_IDS = ["twEHeaBh7zWb3kngkB2lWYQpetD3"];
 
-export const ORGANIZER_USER_IDS = [];
+export const ORGANIZER_USER_IDS = ["hcKl9JDHLkcRzqBskwbIv9VN6Kx2"];
 
 export const UNIT_TYPES = [
   "KILOGRAMM",
