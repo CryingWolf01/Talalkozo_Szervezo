@@ -19,6 +19,7 @@ import Registration from "./views/Login/Registration";
 import UserCreate from "./views/User/UserCreate";
 import UserModify from "./views/User/UserModify";
 import ResetPassword from "./views/Login/ResetPassword";
+import EventCalendar from "./views/EventCalendar/EventCalendar";
 
 initializeApp(firebaseConfig);
 
@@ -43,6 +44,8 @@ function App() {
             <Route path="/event" element={<EventList />} />
             <Route path="/event/create" element={<EventCreate />} />
             <Route path="/event/modify" element={<EventModify />} />
+            {/*EventCalendar Routes*/}
+            <Route path="/event-calendar" element={<EventCalendar />} />
             {/*User Routes*/}
             <Route path="/user" element={<UserList />} />
             <Route path="/user/create" element={<UserCreate />} />
